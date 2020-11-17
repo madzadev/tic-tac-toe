@@ -12,21 +12,15 @@
     [3, 5, 7],
   ];
 
-  let moves = 0;
   let arr = [];
 
-  const winner = () => {
-    console.log("Checking for winner");
-    if (moves == 9) {
-    }
-  };
+  const winner = () => {};
 
-  const userMove = (e) => {
+  const clickHandler = (e) => {
     e.target.innerHTML = "X";
-    ++moves;
     arr.push(parseInt(e.target.getAttribute("number")));
-    console.log(arr);
-    if (moves !== 9) {
+
+    if (arr.length !== 9) {
       pcMove();
     } else {
       winner();
@@ -36,17 +30,14 @@
   const pcMove = () => {
     // pc generates rand number from 0 to 8
     let num;
-
     do {
       num = Math.floor(Math.random() * 9);
-      console.log(num);
     } while (arr.includes(num));
 
     const game = document.querySelector(".game-frame");
-
     game.childNodes[num].innerHTML = "O";
+
     arr.push(num);
-    ++moves;
   };
 </script>
 
@@ -92,8 +83,9 @@
 
   <div class="game-frame">
     {#each Array(9) as field, index}
-      <Field onClick={userMove} number={index} />
+      <Field onClick={clickHandler} number={index} />
     {/each}
   </div>
   <h3>New game</h3>
+  <h3>Result</h3>
 </main>
