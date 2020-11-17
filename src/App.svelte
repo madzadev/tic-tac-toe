@@ -10,6 +10,20 @@
     margin: 0 auto;
   }
 
+  .game-frame {
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .field {
+    background-color: bisque;
+    border: 1px solid grey;
+    cursor: pointer;
+  }
+
   h1 {
     color: #ff3e00;
     text-transform: uppercase;
@@ -26,5 +40,15 @@
 
 <main>
   <h1>Tic Tac Toe</h1>
-  <div class="game-frame" />
+  <div class="game-frame">
+    <div class="field" />
+    <div class="field" />
+    <div class="field" />
+    <div class="field" />
+    <div class="field" />
+    <div class="field" />
+    <div class="field" />
+    <div class="field" />
+    <div class="field" />
+  </div>
 </main>
