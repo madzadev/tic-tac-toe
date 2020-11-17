@@ -27,7 +27,7 @@
   };
 
   const userMove = (e) => {
-    e.target.innerHTML = "X";
+    e.target.firstChild.innerHTML = "X";
     arr.push(parseInt(e.target.getAttribute("number")));
     winner(0);
 
@@ -38,16 +38,18 @@
 
   const pcMove = () => {
     // pc generates rand number from 0 to 8
-    let num;
-    do {
-      num = Math.floor(Math.random() * 9);
-    } while (arr.includes(num));
+    setTimeout(() => {
+      let num;
+      do {
+        num = Math.floor(Math.random() * 9);
+      } while (arr.includes(num));
 
-    const game = document.querySelector(".game-frame");
-    game.childNodes[num].innerHTML = "O";
+      const game = document.querySelector(".game-frame");
+      game.childNodes[num].firstChild.innerHTML = "O";
 
-    arr.push(num);
-    winner(1);
+      arr.push(num);
+      winner(1);
+    }, 1000);
   };
 </script>
 
@@ -65,6 +67,7 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     gap: 10px;
   }
 
