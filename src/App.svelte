@@ -1,29 +1,38 @@
 <script>
   import Field from "./Field.svelte";
 
-  let winning = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
+  let win = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
     [1, 4, 7],
     [2, 5, 8],
-    [3, 6, 9],
-    [1, 5, 9],
-    [3, 5, 7],
+    [0, 4, 8],
+    [2, 4, 6],
   ];
 
   let arr = [];
+  let message = "";
 
-  const winner = () => {};
+  const winner = (perc) => {
+    if (arr.length >= 5) {
+      let arr2 = arr.filter((val, i) => i % 2 == perc);
+      win.forEach((array) => {
+        if (arr2.every((element) => array.includes(element))) {
+          message = "game ended";
+        }
+      });
+    }
+  };
 
-  const clickHandler = (e) => {
+  const userMove = (e) => {
     e.target.innerHTML = "X";
     arr.push(parseInt(e.target.getAttribute("number")));
+    winner(0);
 
-    if (arr.length !== 9) {
+    if (message == "") {
       pcMove();
-    } else {
-      winner();
     }
   };
 
@@ -38,6 +47,7 @@
     game.childNodes[num].innerHTML = "O";
 
     arr.push(num);
+    winner(1);
   };
 </script>
 
@@ -83,9 +93,9 @@
 
   <div class="game-frame">
     {#each Array(9) as field, index}
-      <Field onClick={clickHandler} number={index} />
+      <Field onClick={userMove} number={index} />
     {/each}
   </div>
   <h3>New game</h3>
-  <h3>Result</h3>
+  <h3>Result: {message}</h3>
 </main>
