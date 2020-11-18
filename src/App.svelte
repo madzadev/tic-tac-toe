@@ -19,14 +19,12 @@
   const winner = (perc) => {
     if (arr.length >= 5) {
       let arr2 = arr.filter((val, i) => i % 2 == perc);
-      console.log(`$Array so far clicked: ${arr2}`);
+
       winCombos.forEach((array) => {
         if (array.every((element) => arr2.includes(element))) {
-          console.log(` The winning combination: ${array}`);
           if (perc == 0) {
             message = "You Win!";
             const game = document.querySelector(".game-frame");
-            console.log(`winning array: ${array}`);
             array.forEach((arr, index) => {
               game.childNodes[arr].style.backgroundColor = "#58D68D";
             });
@@ -62,9 +60,43 @@
     if (!message) {
       setTimeout(() => {
         let num;
+        // easy - number picked at random
         do {
           num = Math.floor(Math.random() * 9);
         } while (arr.includes(num));
+
+        let arr2 = arr.filter((val, i) => i % 2 == 0);
+        let arr3 = arr.filter((val, i) => i % 2 == 1);
+
+        winCombos.forEach((array) => {
+          if (
+            array.some((element) => arr2.includes(element)) &&
+            !array.some((element) => arr3.includes(element))
+          ) {
+            console.log(`Possible winning combinations: ${array}`);
+
+            const findCommon = (a, b) => {
+              return a.filter((n) => {
+                return b.indexOf(n) !== -1;
+              });
+            };
+
+            const findMissing = (a, b) => {
+              return a.filter((item) => b.indexOf(item) == -1);
+            };
+
+            const common = findCommon(array, arr2);
+
+            if (common.length == 2) {
+              if (!arr.includes(findMissing(array, common))) {
+                num = findMissing(array, common);
+              }
+            } else if (common.length == 1) {
+              // console.log("not dangerous");
+              // num = findMissing(array, common)[1];
+            }
+          }
+        });
 
         const game = document.querySelector(".game-frame");
         game.childNodes[num].firstChild.innerHTML = "O";
@@ -83,7 +115,7 @@
     usersTurn = true;
 
     const game = document.querySelector(".game-frame").childNodes;
-    //  console.log(game);
+
     game.forEach((el) => {
       el.style.backgroundColor = "";
       el.firstChild.innerHTML = "";
@@ -132,13 +164,6 @@
 
 <main>
   <h1 class="title">{!message ? 'Tic Tac Toe' : message}</h1>
-  <!-- <label for="level">Select a level:</label>
-  <select name="level" id="level">
-    <option value="">Beginner</option>
-    <option value="saab">Medium</option>
-    <option value="mercedes">Hard</option>
-  </select> -->
-
   <div class="game-frame">
     {#each Array(9) as field, index}
       <Field onClick={userMove} number={index} />
