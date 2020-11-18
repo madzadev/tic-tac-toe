@@ -13,7 +13,7 @@
   }
 
   .field p {
-    font-size: 52px;
+    font-size: 82px;
     font-weight: bold;
     color: white;
   }

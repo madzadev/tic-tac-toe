@@ -1,6 +1,11 @@
 <script>
   import Field from "./Field.svelte";
 
+  // To dos
+  // Fix bg color if someone wins vertically and diagnolly at the same time
+  // Fix user cant press during pc thinks
+  // Nex game reset functionality
+
   let win = [
     [0, 1, 2],
     [3, 4, 5],
@@ -23,16 +28,16 @@
         if (array.every((element) => arr2.includes(element))) {
           console.log(` The winning combination: ${array}`);
           if (perc == 0) {
-            message = "User Wins!";
+            message = "You Win!";
             const game = document.querySelector(".game-frame");
             array.forEach((arr, index) => {
-              game.childNodes[arr].style.backgroundColor = "red";
+              game.childNodes[arr].style.backgroundColor = "#5f5f5f";
             });
           } else {
             message = "PC wins!";
             const game = document.querySelector(".game-frame");
             array.forEach((arr, index) => {
-              game.childNodes[arr].style.backgroundColor = "green";
+              game.childNodes[arr].style.backgroundColor = "#5f5f5f";
             });
           }
         }
@@ -92,11 +97,18 @@
     gap: 10px;
   }
 
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
+  .title {
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 46px;
+  }
+
+  .reset {
+    color: white;
+    margin-top: 20px;
+    font-size: 26px;
+    cursor: pointer;
   }
 
   @media (min-width: 640px) {
@@ -107,7 +119,7 @@
 </style>
 
 <main>
-  <h1>Tic Tac Toe</h1>
+  <h1 class="title">{!message ? 'Tic Tac Toe' : message}</h1>
   <!-- <label for="level">Select a level:</label>
   <select name="level" id="level">
     <option value="">Beginner</option>
@@ -120,6 +132,5 @@
       <Field onClick={userMove} number={index} />
     {/each}
   </div>
-  <h3 on:click={reset}>New game</h3>
-  <h3>Result: {message}</h3>
+  <h1 class="reset" on:click={reset}>{!message ? 'Reset' : 'New Game'}</h1>
 </main>
