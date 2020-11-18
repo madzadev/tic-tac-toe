@@ -1,13 +1,6 @@
 <script>
   import Field from "./Field.svelte";
 
-  // To dos
-  // Fix bg color if someone wins vertically and diagnolly at the same time
-  // Fix user cant press during pc thinks
-  // User cant press the same button twice
-  // Tie scenario hangs
-  // After reset hover color change not work
-
   let winCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -20,6 +13,7 @@
   ];
 
   let arr = [];
+  let usersTurn = true;
   let message = "";
 
   const winner = (perc) => {
@@ -32,14 +26,15 @@
           if (perc == 0) {
             message = "You Win!";
             const game = document.querySelector(".game-frame");
+            console.log(`winning array: ${array}`);
             array.forEach((arr, index) => {
-              game.childNodes[arr].style.backgroundColor = "#5f5f5f";
+              game.childNodes[arr].style.backgroundColor = "#58D68D";
             });
           } else {
             message = "PC wins!";
             const game = document.querySelector(".game-frame");
             array.forEach((arr, index) => {
-              game.childNodes[arr].style.backgroundColor = "#5f5f5f";
+              game.childNodes[arr].style.backgroundColor = "#EC7063";
             });
           }
         }
@@ -48,11 +43,17 @@
   };
 
   const userMove = (e) => {
-    if (!e.target.firstChild.innerHTML && !message) {
+    if (e.target.firstChild.innerHTML == "" && !message && usersTurn) {
       e.target.firstChild.innerHTML = "X";
       arr.push(parseInt(e.target.getAttribute("number")));
       winner(0);
-      pcMove();
+      usersTurn = false;
+      if (arr.length != 9) {
+        pcMove();
+      }
+      if (arr.length == 9 && !message) {
+        message = "It's a tie!";
+      }
     }
   };
 
@@ -69,6 +70,7 @@
         game.childNodes[num].firstChild.innerHTML = "O";
 
         arr.push(num);
+        usersTurn = true;
         winner(1);
       }, 500);
     }
@@ -78,10 +80,12 @@
     console.log("Game has been resetted");
     message = "";
     arr = [];
+    usersTurn = true;
+
     const game = document.querySelector(".game-frame").childNodes;
     //  console.log(game);
     game.forEach((el) => {
-      el.style.backgroundColor = "#2d2d2d";
+      el.style.backgroundColor = "";
       el.firstChild.innerHTML = "";
     });
   };
