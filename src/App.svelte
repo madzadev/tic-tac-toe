@@ -4,7 +4,6 @@
   // To dos
   // Fix bg color if someone wins vertically and diagnolly at the same time
   // Fix user cant press during pc thinks
-  // Nex game reset functionality
 
   let win = [
     [0, 1, 2],
@@ -76,6 +75,14 @@
 
   const reset = () => {
     console.log("Game has been resetted");
+    message = "";
+    arr = [];
+    const game = document.querySelector(".game-frame").childNodes;
+    //  console.log(game);
+    game.forEach((el) => {
+      el.style.backgroundColor = "#2d2d2d";
+      el.firstChild.innerHTML = "";
+    });
   };
 </script>
 
