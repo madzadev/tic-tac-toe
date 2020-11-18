@@ -65,6 +65,7 @@
           num = Math.floor(Math.random() * 9);
         } while (arr.includes(num));
 
+        // medium - number calculated if 2 in row
         let arr2 = arr.filter((val, i) => i % 2 == 0);
         let arr3 = arr.filter((val, i) => i % 2 == 1);
 
@@ -167,5 +168,5 @@
       <Field onClick={userMove} number={index} />
     {/each}
   </div>
-  <h1 class="reset" on:click={reset}>{!message ? 'Reset' : 'New Game'}</h1>
+  <h1 class="reset" on:click={reset}>{!message ? 'Reset' : 'Play Again'}</h1>
 </main>
