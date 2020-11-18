@@ -4,8 +4,8 @@
 
 <style>
   .field {
-    background-color: rgb(233, 196, 255);
-    border: 1px solid rgb(156, 0, 161);
+    background-color: #2d2d2d;
+    /* border: 1px solid rgb(156, 0, 161); */
     cursor: pointer;
     border-radius: 20px;
     display: grid;
@@ -13,13 +13,18 @@
   }
 
   .field p {
-    font-size: 32px;
+    font-size: 52px;
     font-weight: bold;
+    color: white;
+  }
+
+  .winning {
+    background-color: green;
   }
 
   .field:hover {
-    background-color: rgb(214, 146, 253);
-    border: 1px solid rgb(55, 0, 71);
+    background-color: #383838;
+    /* border: 1px solid rgb(55, 0, 71); */
   }
 </style>
 
