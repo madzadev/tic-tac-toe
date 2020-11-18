@@ -13,7 +13,8 @@
   }
 
   .field p {
-    font-size: 30px;
+    font-size: 32px;
+    font-weight: bold;
   }
 
   .field:hover {

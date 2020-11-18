@@ -49,7 +49,7 @@
 
       arr.push(num);
       winner(1);
-    }, 1000);
+    }, 500);
   };
 </script>
 
@@ -99,6 +99,6 @@
       <Field onClick={userMove} number={index} />
     {/each}
   </div>
-  <h3>New game</h3>
-  <h3>Result: {message}</h3>
+  <h3>New games</h3>
+  <h3>Results: {message}</h3>
 </main>
