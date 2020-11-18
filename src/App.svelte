@@ -75,23 +75,19 @@
           ) {
             console.log(`Possible winning combinations: ${array}`);
 
-            const findCommon = (a, b) => {
-              return a.filter((n) => {
-                return b.indexOf(n) !== -1;
-              });
-            };
-
-            const findMissing = (a, b) => {
-              return a.filter((item) => b.indexOf(item) == -1);
-            };
-
+            const findCommon = (a, b) => a.filter((n) => b.indexOf(n) !== -1);
             const common = findCommon(array, arr2);
 
+            const findMissing = (a, b) => a.filter((n) => b.indexOf(n) == -1);
+            const missing = findMissing(array, common);
+
             if (common.length == 2) {
-              if (!arr.includes(findMissing(array, common))) {
-                num = findMissing(array, common);
+              if (!arr.includes(missing)) {
+                console.log(`coming from 2: ${missing}`);
+                num = missing[0];
               }
             } else if (common.length == 1) {
+              console.log(`coming from 1: ${missing}`);
               // console.log("not dangerous");
               // num = findMissing(array, common)[1];
             }
@@ -100,6 +96,8 @@
 
         const game = document.querySelector(".game-frame");
         game.childNodes[num].firstChild.innerHTML = "O";
+
+        console.log(num, arr);
 
         arr.push(num);
         usersTurn = true;
