@@ -4,8 +4,11 @@
   // To dos
   // Fix bg color if someone wins vertically and diagnolly at the same time
   // Fix user cant press during pc thinks
+  // User cant press the same button twice
+  // Tie scenario hangs
+  // After reset hover color change not work
 
-  let win = [
+  let winCombos = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -23,7 +26,7 @@
     if (arr.length >= 5) {
       let arr2 = arr.filter((val, i) => i % 2 == perc);
       console.log(`$Array so far clicked: ${arr2}`);
-      win.forEach((array) => {
+      winCombos.forEach((array) => {
         if (array.every((element) => arr2.includes(element))) {
           console.log(` The winning combination: ${array}`);
           if (perc == 0) {
@@ -45,12 +48,10 @@
   };
 
   const userMove = (e) => {
-    //   check if field is empty and no winner
     if (!e.target.firstChild.innerHTML && !message) {
       e.target.firstChild.innerHTML = "X";
       arr.push(parseInt(e.target.getAttribute("number")));
       winner(0);
-
       pcMove();
     }
   };
