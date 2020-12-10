@@ -23,13 +23,13 @@
       winCombos.forEach((array) => {
         if (array.every((element) => arr2.includes(element))) {
           if (perc == 0) {
-            message = "You Win!";
+            message = "You won!";
             const game = document.querySelector(".game-frame");
             array.forEach((arr, index) => {
               game.childNodes[arr].style.backgroundColor = "#58D68D";
             });
           } else {
-            message = "PC wins!";
+            message = "PC won!";
             const game = document.querySelector(".game-frame");
             array.forEach((arr, index) => {
               game.childNodes[arr].style.backgroundColor = "#EC7063";
@@ -50,7 +50,7 @@
         pcMove();
       }
       if (arr.length == 9 && !message) {
-        message = "It's a tie!";
+        message = "A tie!";
       }
     }
   };
