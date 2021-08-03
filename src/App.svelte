@@ -56,16 +56,13 @@
   };
 
   const pcMove = () => {
-    // pc generates rand number from 0 to 8
     if (!message) {
       setTimeout(() => {
         let num;
-        // easy - number picked at random
         do {
           num = Math.floor(Math.random() * 9);
         } while (arr.includes(num));
 
-        // medium - number calculated if 2 in row
         let arr2 = arr.filter((val, i) => i % 2 == 0);
         let arr3 = arr.filter((val, i) => i % 2 == 1);
 
@@ -74,7 +71,6 @@
             array.some((element) => arr2.includes(element)) &&
             !array.some((element) => arr3.includes(element))
           ) {
-            console.log(`Possible winning combinations: ${array}`);
 
             const findCommon = (a, b) => a.filter((n) => b.indexOf(n) !== -1);
             const common = findCommon(array, arr2);
@@ -84,11 +80,9 @@
 
             if (common.length == 2) {
               if (!arr.includes(missing)) {
-                console.log(`coming from 2: ${missing}`);
                 num = missing[0];
               }
             } else if (common.length == 1) {
-              console.log(`coming from 1: ${missing}`);
             }
           }
         });
@@ -104,7 +98,6 @@
   };
 
   const reset = () => {
-    console.log("Game has been resetted");
     message = "";
     arr = [];
     usersTurn = true;
@@ -128,11 +121,11 @@
 
   .game-frame {
     max-width: 500px;
-    height: 500px;
+    min-height: 100px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 20vh);
     gap: 10px;
   }
 
@@ -149,12 +142,6 @@
     font-size: 26px;
     cursor: pointer;
   }
-
-  /* @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  } */
 </style>
 
 <main>
