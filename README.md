@@ -1,8 +1,8 @@
 # Tic Tac Toe
 
-Play the popular Tic-Tac-Toe game against computer.
+Play the Tic-Tac-Toe game against a computer.
 
-![Alt img](https://images.ctfassets.net/zlsyc9paq6sa/3uBrJ07WSM40FpolgjInHY/7d886cb4187b52194bf9b63c183a1d3a/1627637330_x.gif)
+![Alt img](https://images.ctfassets.net/zlsyc9paq6sa/3HTYWmjkvJK2Tlgeublqdb/b4068de81576fb6998400d273cd14c47/1627997372_x.gif)
 
 ## Features
 

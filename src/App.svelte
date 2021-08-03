@@ -121,11 +121,11 @@
 
   .game-frame {
     max-width: 500px;
-    min-height: 100px;
+    min-height: 500px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 20vh);
+    grid-template-rows: repeat(3, 1fr);
     gap: 10px;
   }
 
