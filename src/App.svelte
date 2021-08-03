@@ -89,16 +89,12 @@
               }
             } else if (common.length == 1) {
               console.log(`coming from 1: ${missing}`);
-              // console.log("not dangerous");
-              // num = findMissing(array, common)[1];
             }
           }
         });
 
         const game = document.querySelector(".game-frame");
         game.childNodes[num].firstChild.innerHTML = "O";
-
-        console.log(num, arr);
 
         arr.push(num);
         usersTurn = true;
@@ -126,12 +122,12 @@
   main {
     text-align: center;
     padding: 1em;
-    max-width: 240px;
+    max-width: 100%;
     margin: 0 auto;
   }
 
   .game-frame {
-    width: 500px;
+    max-width: 500px;
     height: 500px;
     margin: 0 auto;
     display: grid;
@@ -154,11 +150,11 @@
     cursor: pointer;
   }
 
-  @media (min-width: 640px) {
+  /* @media (min-width: 640px) {
     main {
       max-width: none;
     }
-  }
+  } */
 </style>
 
 <main>
